@@ -9,13 +9,13 @@ import java.util.Scanner;
 public class GetWeather {
     public static  void main(String[] args) throws IOException {
          String  KEY_API="fa46382e8f2367be6182d405ed06c3e7";
-        WeatherService weatherSerive = new WeatherService(
+        WeatherService weatherService = new WeatherService(
                 "http://api.weatherstack.com/current",KEY_API);
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Podaj miasto:");
         String city = scanner.nextLine();
-        Weather weather = weatherSerive.getCityWeather(city);
+        Weather weather = weatherService.getCityWeather(city);
 
         System.out.println("Temperatura w " + weather.getLocation().getName() +
                 " wynosi: " +weather.getCurrent().getTemperature());
