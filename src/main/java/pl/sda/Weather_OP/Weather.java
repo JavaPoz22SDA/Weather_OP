@@ -2,16 +2,16 @@ package pl.sda.Weather_OP;
 
 public class Weather {
 
-    private Double  temperature;
-    private String city;
+   // private Double  temperature;
+   // private String city;
     private Request request;
     private Location location;
+    private Current current;
 
     public Weather(){}
 
-    public Weather(Double temperature, String city, Request request, Location location) {
-        this.temperature = temperature;
-        this.city = city;
+    public Weather( Request request, Location location, Current current) {
+        this.current=current;
         this.request = request;
         this.location = location;
     }
@@ -32,18 +32,10 @@ public class Weather {
         this.request = request;
     }
 
-    public Double getTemperature(){
-        return temperature;
-    }
-    public void setTemperature(Double temperature){
-        this.temperature = temperature;
+    public Current getCurrent() {
+        return current;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
+    public void setCurrent(Current current) {
+        this.current = current;}
 }
