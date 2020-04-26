@@ -1,5 +1,6 @@
 package pl.sda.Weather_OP;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -15,10 +16,13 @@ public class GetWeather {
 
         System.out.print("Podaj miasto:");
         String city = scanner.nextLine();
-        Weather weather = weatherService.getCityWeather(city);
+       try { Weather weather = weatherService.getCityWeather(city);
 
         System.out.println("Temperatura w " + weather.getLocation().getName() +
                 " wynosi: " +weather.getCurrent().getTemperature());
 
-    }
-}
+    } catch (UnrecognizedPropertyException e) {
+           System.out.println("Podane miasto nie istnieje");
+       }
+}}
+

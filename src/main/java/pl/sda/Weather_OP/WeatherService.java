@@ -14,7 +14,7 @@ public class WeatherService {
         finalURL=url+ "?access_key=" +key;
     }
     public Weather getCityWeather(String city) throws IOException {
-        finalURL = finalURL + "&query=" + city;
+        finalURL = finalURL + "&query=" + city.replace(" ", "%20");
         return mapper.readValue(new URL(finalURL), Weather.class);
     }
 }
