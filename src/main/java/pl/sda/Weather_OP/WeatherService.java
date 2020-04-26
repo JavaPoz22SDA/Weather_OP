@@ -1,6 +1,7 @@
 package pl.sda.Weather_OP;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,8 +14,12 @@ public class WeatherService {
 
         finalURL=url+ "?access_key=" +key;
     }
-    public Weather getCityWeather(String city) throws IOException {
+    public Object getCityWeather(String city) throws IOException {
         finalURL = finalURL + "&query=" + city.replace(" ", "%20");
-        return mapper.readValue(new URL(finalURL), Weather.class);
+        try {
+            return mapper.readValue(new URL(finalURL), Weather.class); // bere do sebe url, a wertaje nam weather
+        } catch (UnrecognizedPropertyException e) {
+            return mapper.readValue(new URL(finalURL), ErrorWeatherException.class); // bere do sebe url , a wertaje nam error
+        }
     }
 }
